@@ -1,0 +1,6 @@
+@import '~@angular/material/theming';
+
+.example-card {
+    @include mat-elevation(8, #e91e63, 0.8);
+
+}

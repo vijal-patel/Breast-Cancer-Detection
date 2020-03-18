@@ -1,0 +1,53 @@
+ 
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Upload image</ng-template>
+
+                <div class="form-group">
+                    <input #fileUpload hidden="true" type="file" onclick="this.value=null" (change)="addFile($event)" accept=""/>
+                    <br>
+                    <button mat-flat-button color="primary" (click)="fileUpload.click()">Choose File</button>
+      <br>
+      <br>
+                    <mat-card class="example-card" *ngIf="file != null" >
+                      <mat-card-content class="list-container">
+                         File size : {{file_size}} Mb | File name : "{{file_name}}"
+                      </mat-card-content>
+                      <mat-card-actions>
+                        <button mat-button (click) ="removeFile()">Remove</button>
+                      </mat-card-actions>
+                    </mat-card>
+      
+      
+      
+                  </div>
+                <div>
+                    <br>
+                  <button mat-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Preview</ng-template>
+                <img [src]="image_url" alt="" style="margin: auto; justify-content: center;">
+                <div>
+                  <button mat-button matStepperPrevious>Back</button>
+                  <button mat-button matStepperNext (click)="send_img()">Predict</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Prediction</ng-template>
+              <p style="margin: auto; text-align: center;">{{pred}}</p>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset();removeFile()">Reset</button>
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+          
+
+
+ 
