@@ -31,7 +31,7 @@
             <mat-step [stepControl]="secondFormGroup">
               <form [formGroup]="secondFormGroup">
                 <ng-template matStepLabel>Preview</ng-template>
-                <img [src]="image_url" alt="" style="margin: auto; justify-content: center;">
+                <img [src]="image_url" alt="" style="  display: block;margin-left: auto;margin-right: auto;margin-top: 20px;">
                 <div>
                   <button mat-button matStepperPrevious>Back</button>
                   <button mat-button matStepperNext (click)="send_img()">Predict</button>
@@ -40,7 +40,9 @@
             </mat-step>
             <mat-step>
               <ng-template matStepLabel>Prediction</ng-template>
-              <p style="margin: auto; text-align: center;">{{pred}}</p>
+              <mat-spinner style="margin: auto; text-align: center;" *ngIf="!this.pred"></mat-spinner>
+
+              <p style="margin: auto; text-align: center;" *ngIf="this.pred">{{pred}}</p>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button (click)="stepper.reset();removeFile()">Reset</button>

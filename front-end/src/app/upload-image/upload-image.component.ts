@@ -17,7 +17,7 @@ export class UploadImageComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   formData = new FormData();
-  pred = "Awaiting prediction..."
+  pred = null;
   constructor(private _formBuilder: FormBuilder, private sanitizer: DomSanitizer, private httpClient: HttpClient) { }
 
   ngOnInit() {
