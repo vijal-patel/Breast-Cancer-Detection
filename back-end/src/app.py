@@ -65,6 +65,7 @@ if __name__ == '__main__':
 def main():
     if request.method == 'POST':
         file = request.files["file"]
+        file.save(cwd + file.filename) 
         image = parse_image(cwd + file.filename)
         pred = model(image)
         return jsonify({'pred':round(pred.numpy()[0][0]*100, 2)})
